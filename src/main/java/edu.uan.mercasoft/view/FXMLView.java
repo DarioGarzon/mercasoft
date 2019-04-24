@@ -37,18 +37,18 @@ public enum FXMLView {
 
         @Override
         String getFxmlFile() {
-            return "/layout/Login.fxml";
+            return "/layout/Login2.fxml";
         }
         @Override
         Object getController(StageManager stage) {
             return new LoginController();
         }
         @Override
-        int getWidth(){return 300;}
+        int getWidth(){return 600;}
 
         @Override
         int getHeight() {
-            return 275;
+            return 400;
         }
     };
 

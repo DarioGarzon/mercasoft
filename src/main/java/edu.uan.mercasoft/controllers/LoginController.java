@@ -21,17 +21,15 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class LoginController {
     @FXML
-    public TextField txt_username;
+    private TextField txt_username;
 
     @FXML
-    public TextField txt_password;
-    IAuthenticateInteractor authenticator;
+    private TextField txt_password;
+    private IAuthenticateInteractor authenticator;
 
     public LoginController() {
         authenticator= new AuthenticateInteractorImpl(this);
     }
-
-
 
     @FXML
     private void validateFields(ActionEvent action){
@@ -40,7 +38,9 @@ public class LoginController {
             removeBlankMessage(txt_password);
             validateNullableUser(txt_username.getText().trim());
             validateNullablePassword(txt_password.getText().trim());
-            authenticator.Authenticate(txt_username.getText().trim(), txt_password.getText().trim());
+            if(authenticator.Authenticate(txt_username.getText().trim(), txt_password.getText().trim())) {
+                GoToApp();
+            }
         }
         catch (NullUserName nullUser){
             blankMessage(txt_username);
@@ -48,13 +48,26 @@ public class LoginController {
         catch (NullPassword nullPassword) {
             blankMessage(txt_password);
         } catch (NotFoundUser notFoundUser) {
-            throw new NotImplementedException();
+            notifyAuthError("User");
         } catch (NotMatchingPassword notMatchingPassword) {
-            throw new NotImplementedException();
+            notifyAuthError("Password");
         }
 
     }
 
+    private void notifyAuthError(String type){
+        switch (type){
+            case "User":
+                throw new NotImplementedException();
+                //break;
+            case "Password":
+                throw new NotImplementedException();
+                //break;
+            default:
+                break;
+        }
+
+    }
 
     private void validateNullableUser(String userName) throws NullUserName {
         if(userName.equals(null)||userName.isEmpty()){
@@ -90,7 +103,7 @@ public class LoginController {
     }
 
 
-    public void GoToApp(){
+    private void GoToApp(){
 
     }
 

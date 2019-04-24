@@ -1,4 +1,6 @@
-package edu.uan.mercasoft.repository;
+package edu.uan.mercasoft.repository.JPAImpl;
+
+import edu.uan.mercasoft.domain.Permission;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -33,5 +35,13 @@ public class PermissionDTO {
     public PermissionDTO(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public Permission ConvertToPermission(){
+        return new Permission(this.name,this.description);
+    }
+
+    public PermissionDTO(Permission permission) {
+        this(permission.getName(),permission.getDescription());
     }
 }

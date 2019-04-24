@@ -1,7 +1,7 @@
 package edu.uan.mercasoft.domain;
 
-import edu.uan.mercasoft.repository.PermissionDTO;
-import edu.uan.mercasoft.repository.RoleDTO;
+import edu.uan.mercasoft.repository.JPAImpl.PermissionDTO;
+import edu.uan.mercasoft.repository.JPAImpl.RoleDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +11,24 @@ public class Role {
     private String name;
     private List<Permission> permissionList;
 
-    public Role(RoleDTO role) {
-        this.name=role.getName();
-        this.permissionList= new ArrayList<Permission>();
-        for (PermissionDTO permissionFromData:role.getPermissionList()) {
-            this.permissionList.add(new Permission(permissionFromData));
-        }
+    public List<Permission> getPermissionList() {
+        return permissionList;
+    }
+
+    public void setPermissionList(List<Permission> permissionList) {
+        this.permissionList = permissionList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Role(String name, List<Permission> permissionList) {
+        this.name = name;
+        this.permissionList = permissionList;
     }
 }

@@ -9,11 +9,11 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) {
         StageManager stageManager=new StageManager(primaryStage);
         stageManager.setLocation("es");
-        JPAUserRepositoryImpl initBasicUser=new JPAUserRepositoryImpl();
-        initBasicUser.saveUser("9F86D081884C7D659A2FEAA0C55AD015A3BF4F1B2B0B822CD15D6C15B0F00A08");
+        //JPAUserRepositoryImpl initBasicUser=new JPAUserRepositoryImpl();
+        //initBasicUser.saveUser("C46D76F62D2441BD0F314E016FF14BC37F204465D213391EF1F2D8A286A79061");
         stageManager.switchScene(FXMLView.LOGIN);
     }
 

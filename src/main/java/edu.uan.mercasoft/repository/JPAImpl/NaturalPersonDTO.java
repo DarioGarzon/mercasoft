@@ -1,17 +1,17 @@
-package edu.uan.mercasoft.repository;
+package edu.uan.mercasoft.repository.JPAImpl;
 
-import com.sun.istack.Nullable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "NaturalPerson")
+@Table(name = "Natural_Person")
+@Inheritance(strategy=InheritanceType.JOINED)
+@NamedQueries({
+        @NamedQuery(name="NaturalPersonDTO.findAll", query="SELECT c FROM NaturalPersonDTO c")
+}
+)
 public class NaturalPersonDTO {
 
     protected String name;
-
     protected String lastName;
     protected String documentNumber;
 
@@ -43,4 +43,6 @@ public class NaturalPersonDTO {
 
     public NaturalPersonDTO() {
     }
+
+
 }

@@ -9,22 +9,18 @@ import edu.uan.mercasoft.repository.JPAUserRepositoryImpl;
 import java.util.List;
 
 public class PersistenceFacade {
-    IUserRepository usersRepo;
+    private IUserRepository usersRepo;
 
     public PersistenceFacade() {
         usersRepo=new JPAUserRepositoryImpl();
     }
 
     public User findUserByUserNameAndPassword(@NotNull String userName, @NotNull String password) throws NotFoundUser, NotMatchingPassword {
-        List<User>usersByUserName= usersRepo.getUsersByUserName(userName);
-        if(usersByUserName.size()>1){
-            throw  new NotFoundUser();
+        User foundUser= usersRepo.getUserByUserName(userName);
+        if(!foundUser.getPassword().equals(password)){
+                throw new NotMatchingPassword();
         }
-        else{
-            for (User foundUser:usersByUserName) {
-                return foundUser;
-            }
-            throw new NotMatchingPassword();
-        }
+        return foundUser;
     }
+
 }

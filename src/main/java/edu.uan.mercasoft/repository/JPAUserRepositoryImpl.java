@@ -1,6 +1,12 @@
 package edu.uan.mercasoft.repository;
 
+import edu.uan.mercasoft.domain.NaturalPerson;
 import edu.uan.mercasoft.domain.User;
+import edu.uan.mercasoft.exceptions.NotFoundUser;
+import edu.uan.mercasoft.repository.JPAImpl.NaturalPersonDTO;
+import edu.uan.mercasoft.repository.JPAImpl.PermissionDTO;
+import edu.uan.mercasoft.repository.JPAImpl.RoleDTO;
+import edu.uan.mercasoft.repository.JPAImpl.UserDTO;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -9,15 +15,17 @@ import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JPAUserRepositoryImpl implements IUserRepository {
-    public List<User> getUsersByUserName(String userName) {
+public class JPAUserRepositoryImpl implements IUserRepository  {
+    public User getUserByUserName(String userName) throws NotFoundUser {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
-        TypedQuery<UserDTO> consultaAlumnos= em.createNamedQuery("User.findByUserName", UserDTO.class);
+        TypedQuery<UserDTO> consultaAlumnos= em.createNamedQuery("UserDTO.findByUserName", UserDTO.class);
         consultaAlumnos.setParameter("userName", userName);
-        List<User> lista= new ArrayList<User>();
-        consultaAlumnos.getResultList().stream().forEach(x->lista.add(new User(x)));
-        return lista;
+        List<UserDTO> foundUser=consultaAlumnos.getResultList();
+        if(foundUser.size()<1){
+            throw new NotFoundUser();
+        }
+        return foundUser.get(0).ConvertToUser();
     }
 
     public void saveUser(String hashedPass){

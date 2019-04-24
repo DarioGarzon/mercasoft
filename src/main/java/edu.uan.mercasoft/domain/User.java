@@ -1,17 +1,11 @@
 package edu.uan.mercasoft.domain;
 
-import edu.uan.mercasoft.repository.UserDTO;
 
 public class User extends NaturalPerson {
 
     private String userName;
     private String password;
     private Role role;
-
-    public User(UserDTO userData) {
-        this(userData.getUserName(),userData.getLastName(),userData.getDocumentNumber(),
-                userData.getUserName(),userData.getPassword(),new Role(userData.getRole()));
-    }
 
     public String getUserName() {
         return userName;

@@ -7,15 +7,17 @@ import edu.uan.mercasoft.exceptions.NotMatchingPassword;
 import edu.uan.mercasoft.domain.PersistenceFacade;
 import edu.uan.mercasoft.domain.User;
 import edu.uan.mercasoft.Session;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.xml.bind.DatatypeConverter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class AuthenticateInteractorImpl implements  IAuthenticateInteractor{
-    LoginController controller;
-    PersistenceFacade facade;
+    private LoginController controller;
+    private PersistenceFacade facade;
 
     public AuthenticateInteractorImpl(LoginController loginController) {
         controller=loginController;
@@ -28,20 +30,20 @@ public class AuthenticateInteractorImpl implements  IAuthenticateInteractor{
             authenticatedUser = facade.findUserByUserNameAndPassword(userName,hashPasswordSaltPepper(password,"Merca","Soft"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+            throw new NotImplementedException();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+            throw new NotImplementedException();
         }
         Session.getInstance().setActualUser(authenticatedUser);
-        controller.GoToApp();
         return true;
     }
 
     private String hashPassword(@NotNull String passwordToHash) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        digest.update(passwordToHash.getBytes("UTF-8"));
+        digest.update(passwordToHash.getBytes(StandardCharsets.UTF_8));
         byte[] hash = digest.digest();
-        String result = DatatypeConverter.printHexBinary(hash);
-        return result;
+        return DatatypeConverter.printHexBinary(hash);
     }
 
     private String hashPasswordSaltPepper(@NotNull String passwordToHash,@NotNull String salt,@NotNull String pepper) throws UnsupportedEncodingException, NoSuchAlgorithmException {
