@@ -17,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class LoginController {
     @FXML
@@ -29,6 +30,8 @@ public class LoginController {
     public LoginController() {
         authenticator= new AuthenticateInteractorImpl(this);
     }
+
+
 
     @FXML
     private void validateFields(ActionEvent action){
@@ -45,9 +48,9 @@ public class LoginController {
         catch (NullPassword nullPassword) {
             blankMessage(txt_password);
         } catch (NotFoundUser notFoundUser) {
-            notFoundUser.printStackTrace();
+            throw new NotImplementedException();
         } catch (NotMatchingPassword notMatchingPassword) {
-            notMatchingPassword.printStackTrace();
+            throw new NotImplementedException();
         }
 
     }

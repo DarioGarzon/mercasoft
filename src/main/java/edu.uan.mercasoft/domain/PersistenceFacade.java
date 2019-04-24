@@ -1,18 +1,18 @@
-package edu.uan.mercasoft.Model;
+package edu.uan.mercasoft.domain;
 
 import com.sun.istack.internal.NotNull;
 import edu.uan.mercasoft.exceptions.NotFoundUser;
 import edu.uan.mercasoft.exceptions.NotMatchingPassword;
-import edu.uan.mercasoft.Repository.IUserRepository;
-import edu.uan.mercasoft.Repository.SQLUserRepositoryImpl;
+import edu.uan.mercasoft.repository.IUserRepository;
+import edu.uan.mercasoft.repository.JPAUserRepositoryImpl;
 
 import java.util.List;
 
-public class Facade {
+public class PersistenceFacade {
     IUserRepository usersRepo;
 
-    public Facade() {
-        usersRepo=new SQLUserRepositoryImpl();
+    public PersistenceFacade() {
+        usersRepo=new JPAUserRepositoryImpl();
     }
 
     public User findUserByUserNameAndPassword(@NotNull String userName, @NotNull String password) throws NotFoundUser, NotMatchingPassword {

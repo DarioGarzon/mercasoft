@@ -1,6 +1,6 @@
-package edu.uan.mercasoft.Repository;
+package edu.uan.mercasoft.repository;
 
-import edu.uan.mercasoft.Model.User;
+import edu.uan.mercasoft.domain.User;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package edu.uan.mercasoft.Model;
+package edu.uan.mercasoft.domain;
 
 import java.util.Date;
 

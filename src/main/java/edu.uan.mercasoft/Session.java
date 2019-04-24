@@ -1,7 +1,7 @@
 package edu.uan.mercasoft;
 
 import edu.uan.mercasoft.controllers.AppController;
-import edu.uan.mercasoft.Model.User;
+import edu.uan.mercasoft.domain.User;
 
 public class Session {
     private User actualUser;

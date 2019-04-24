@@ -1,9 +1,20 @@
-package edu.uan.mercasoft.Model;
+package edu.uan.mercasoft.repository;
 
-public class NaturalPerson {
+import com.sun.istack.Nullable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "NaturalPerson")
+public class NaturalPersonDTO {
+
     protected String name;
+
     protected String lastName;
     protected String documentNumber;
+
 
     public String getName() {
         return name;
@@ -20,7 +31,8 @@ public class NaturalPerson {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
+    @Id
+    @Column(name = "DOCUMENT")
     public String getDocumentNumber() {
         return documentNumber;
     }
@@ -29,9 +41,6 @@ public class NaturalPerson {
         this.documentNumber = documentNumber;
     }
 
-    public NaturalPerson(String name, String lastName, String documentNumber) {
-        this.name = name;
-        this.lastName = lastName;
-        this.documentNumber = documentNumber;
+    public NaturalPersonDTO() {
     }
 }
