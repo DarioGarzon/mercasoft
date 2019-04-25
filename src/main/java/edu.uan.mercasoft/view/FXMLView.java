@@ -2,6 +2,7 @@ package edu.uan.mercasoft.view;
 
 import edu.uan.mercasoft.controllers.LoginController;
 import edu.uan.mercasoft.controllers.MainController;
+import edu.uan.mercasoft.controllers.SaleController;
 
 import java.util.ResourceBundle;
 
@@ -15,19 +16,13 @@ public enum FXMLView {
 
         @Override
         String getFxmlFile() {
-            return "MainContainer.fxml";
+            return "/layout/MainContainer.fxml";
         }
         @Override
         Object getController(StageManager stage) {
             return new MainController(stage);
         }
-        @Override
-        int getWidth(){return 600;}
 
-        @Override
-        int getHeight() {
-            return 450;
-        }
     },
     LOGIN {
         @Override
@@ -41,22 +36,33 @@ public enum FXMLView {
         }
         @Override
         Object getController(StageManager stage) {
-            return new LoginController();
+            return new LoginController(stage);
         }
-        @Override
-        int getWidth(){return 600;}
 
+    },
+
+    SALE{
         @Override
-        int getHeight() {
-            return 400;
+        String getTitle() {
+            return getStringFromResourceBundle("login.title");
         }
+        @Override
+        String getFxmlFile() {
+            return "/layout/SaleTab.fxml";
+        }
+        @Override
+        Object getController(StageManager stage) {
+            return new SaleController();
+        }
+
     };
+
 
     abstract String getTitle();
     abstract String getFxmlFile();
     abstract Object getController(StageManager stage);
-    abstract int getWidth();
-    abstract int getHeight();
+    int getWidth(){return 640;}
+    int getHeight(){return 480;}
     String getStringFromResourceBundle(String key){
         return ResourceBundle.getBundle("Bundle").getString(key);
     }

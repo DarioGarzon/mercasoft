@@ -19,4 +19,9 @@ public class ProductType {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public ProductType(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+        <TabPane fx:id="tabPane" layoutX="127.0" layoutY="90.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <Tab text="%usersTab" >
+
+                        <fx:include fx:id="usersContent" source="UserTab.fxml" />
+                </Tab>
+                <Tab text="%rolesTab"  >
+
+                        <fx:include fx:id="rolesContent" source="RoleTab.fxml" />
+                    </Tab>
+                <Tab text="%salesTab"  >
+
+                        <fx:include fx:id="salesContent" source="SaleTab.fxml" />
+                    </Tab>
+
+        </TabPane>
+</AnchorPane>

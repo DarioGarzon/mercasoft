@@ -8,9 +8,50 @@ public class Product {
     private float price;
     private short appliedTax;
     private ProductType productType;
-    private Date exporationDate;
+    private Date expirationDate;
     private String unitOfMeasure;
     private Supplier supplier;
+    private int version;
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public String getUnitOfMeasure() {
+        return unitOfMeasure;
+    }
+
+    public void setUnitOfMeasure(String unitOfMeasure) {
+        this.unitOfMeasure = unitOfMeasure;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
 
     public String getProductCode() {
         return productCode;
@@ -43,5 +84,17 @@ public class Product {
 
     public void setProductType(ProductType productType) {
         this.productType = productType;
+    }
+
+    public Product(String productCode, String name, float price, short appliedTax, ProductType productType, Date expirationDate, String unitOfMeasure, Supplier supplier, int version) {
+        this.productCode = productCode;
+        this.name = name;
+        this.price = price;
+        this.appliedTax = appliedTax;
+        this.productType = productType;
+        this.expirationDate = expirationDate;
+        this.unitOfMeasure = unitOfMeasure;
+        this.supplier = supplier;
+        this.version = version;
     }
 }

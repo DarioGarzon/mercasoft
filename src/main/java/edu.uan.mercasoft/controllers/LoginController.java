@@ -6,6 +6,8 @@ import edu.uan.mercasoft.exceptions.NullPassword;
 import edu.uan.mercasoft.exceptions.NullUserName;
 import edu.uan.mercasoft.useCases.AuthenticateInteractorImpl;
 import edu.uan.mercasoft.useCases.IAuthenticateInteractor;
+import edu.uan.mercasoft.view.FXMLView;
+import edu.uan.mercasoft.view.StageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -26,9 +28,11 @@ public class LoginController {
     @FXML
     private TextField txt_password;
     private IAuthenticateInteractor authenticator;
+    private StageManager stgManager;
 
-    public LoginController() {
+    public LoginController(StageManager stageManager) {
         authenticator= new AuthenticateInteractorImpl(this);
+        this.stgManager=stageManager;
     }
 
     @FXML
@@ -58,9 +62,11 @@ public class LoginController {
     private void notifyAuthError(String type){
         switch (type){
             case "User":
+                postErrorMessage("Usuario no encontrado");
                 throw new NotImplementedException();
                 //break;
             case "Password":
+                postErrorMessage("Contraseña no coincide");
                 throw new NotImplementedException();
                 //break;
             default:
@@ -104,7 +110,7 @@ public class LoginController {
 
 
     private void GoToApp(){
-
+        stgManager.switchScene(FXMLView.MAIN);
     }
 
 

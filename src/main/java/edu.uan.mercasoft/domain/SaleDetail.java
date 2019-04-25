@@ -4,6 +4,13 @@ public class SaleDetail {
     private Product product;
     private short quantity;
     private float discount;
+    private float orderPrice;
+
+    public float getOrderPrice() {
+        return (product.getPrice()*quantity*(1-discount));
+    }
+
+
 
     public Product getProduct() {
         return product;

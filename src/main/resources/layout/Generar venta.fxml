@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="508.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/11.0.1" >
+      <ImageView fitHeight="55.0" fitWidth="73.0" layoutX="288.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+
+            <Image url="@../107831.png" />
+
+      </ImageView>
+      <Text layoutX="46.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generar Venta" wrappingWidth="257.5999633789062">
+         <font>
+            <Font name="Arial Bold Italic" size="34.0" />
+         </font>
+      </Text>
+      <Text layoutX="90.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id">
+         <font>
+            <Font name="Arial Bold Italic" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="128.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+         <font>
+            <Font name="Arial Bold Italic" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="218.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cantidad">
+         <font>
+            <Font name="Arial Bold Italic" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="323.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unitario">
+         <font>
+            <Font name="Arial Bold Italic" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="419.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Subtotal">
+         <font>
+            <Font name="Arial Bold Italic" size="20.0" />
+         </font>
+      </Text>
+      <Text layoutX="531.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Iva">
+         <font>
+            <Font name="Arial Bold Italic" size="20.0" />
+         </font>
+      </Text>
+      <Button layoutX="235.0" layoutY="100.0" mnemonicParsing="false" text="Buscar" />
+      <Button layoutX="236.0" layoutY="138.0" mnemonicParsing="false" text="Buscar" />
+      <Button layoutX="265.0" layoutY="440.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" text="Finalizar" />
+      <Label layoutX="27.0" layoutY="103.0" prefHeight="18.0" prefWidth="18.0" text="Id:" />
+      <Label layoutX="13.0" layoutY="141.0" prefHeight="18.0" prefWidth="46.0" text="Cliente:" />
+      <TextField layoutX="54.0" layoutY="100.0" prefHeight="26.0" prefWidth="163.0" />
+      <TextField layoutX="54.0" layoutY="138.0" prefHeight="26.0" prefWidth="163.0" />
+      <Text layoutX="399.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ Total ">
+         <font>
+            <Font name="Arial Bold Italic" size="20.0" />
+         </font>
+      </Text>
+</AnchorPane>

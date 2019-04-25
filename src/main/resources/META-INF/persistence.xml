@@ -9,6 +9,9 @@
         <class>edu.uan.mercasoft.repository.JPAImpl.PermissionDTO</class>
         <class>edu.uan.mercasoft.repository.JPAImpl.NaturalPersonDTO</class>
         <class>edu.uan.mercasoft.repository.JPAImpl.RegularCustomerDTO</class>
+        <class>edu.uan.mercasoft.repository.JPAImpl.ProductDTO</class>
+        <class>edu.uan.mercasoft.repository.JPAImpl.ProductTypeDTO</class>
+        <class>edu.uan.mercasoft.repository.JPAImpl.SupplierDTO</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://192.168.0.13:5432/mercasoft1" />

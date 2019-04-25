@@ -1,8 +1,9 @@
-package edu.uan.mercasoft.repository;
+package edu.uan.mercasoft.repository.JPAImpl;
 
 import edu.uan.mercasoft.domain.NaturalPerson;
 import edu.uan.mercasoft.domain.User;
 import edu.uan.mercasoft.exceptions.NotFoundUser;
+import edu.uan.mercasoft.repository.IUserRepository;
 import edu.uan.mercasoft.repository.JPAImpl.NaturalPersonDTO;
 import edu.uan.mercasoft.repository.JPAImpl.PermissionDTO;
 import edu.uan.mercasoft.repository.JPAImpl.RoleDTO;
@@ -15,13 +16,13 @@ import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JPAUserRepositoryImpl implements IUserRepository  {
+public class JPAUserRepositoryImpl implements IUserRepository {
     public User getUserByUserName(String userName) throws NotFoundUser {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
-        TypedQuery<UserDTO> consultaAlumnos= em.createNamedQuery("UserDTO.findByUserName", UserDTO.class);
-        consultaAlumnos.setParameter("userName", userName);
-        List<UserDTO> foundUser=consultaAlumnos.getResultList();
+        TypedQuery<UserDTO> customQuery= em.createNamedQuery("UserDTO.findByUserName", UserDTO.class);
+        customQuery.setParameter("userName", userName);
+        List<UserDTO> foundUser=customQuery.getResultList();
         if(foundUser.size()<1){
             throw new NotFoundUser();
         }

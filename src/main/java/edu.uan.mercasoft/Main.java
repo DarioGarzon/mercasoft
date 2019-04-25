@@ -1,6 +1,6 @@
 package edu.uan.mercasoft;
 
-import edu.uan.mercasoft.repository.JPAUserRepositoryImpl;
+import edu.uan.mercasoft.repository.JPAImpl.JPAUserRepositoryImpl;
 import edu.uan.mercasoft.view.FXMLView;
 import edu.uan.mercasoft.view.StageManager;
 import javafx.application.Application;
