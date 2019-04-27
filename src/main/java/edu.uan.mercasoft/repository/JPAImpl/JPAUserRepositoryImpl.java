@@ -18,6 +18,7 @@ import java.util.List;
 
 public class JPAUserRepositoryImpl implements IUserRepository {
     public User getUserByUserName(String userName) throws NotFoundUser {
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
         TypedQuery<UserDTO> customQuery= em.createNamedQuery("UserDTO.findByUserName", UserDTO.class);

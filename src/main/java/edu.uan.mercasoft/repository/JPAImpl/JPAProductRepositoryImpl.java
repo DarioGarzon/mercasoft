@@ -15,10 +15,10 @@ public class JPAProductRepositoryImpl implements IProductRepository {
     public Product getActualProduct(String productCode) throws NotFoundProduct {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
-        TypedQuery<ProductDTO> customQuery= em.createNamedQuery("ProductDTO.findByCode", ProductDTO.class);
-        customQuery.setParameter("productCode",productCode);
-        List<ProductDTO> foundProduct=customQuery.setMaxResults(1).getResultList();
-        if(foundProduct==null){
+        TypedQuery<ProductDTO> customQuery = em.createNamedQuery("ProductDTO.findByCode", ProductDTO.class);
+        customQuery.setParameter("productCode", productCode);
+        List<ProductDTO> foundProduct = customQuery.setMaxResults(1).getResultList();
+        if (foundProduct == null) {
             throw new NotFoundProduct();
         }
         return foundProduct.get(0).convertToProduct();
@@ -29,10 +29,20 @@ public class JPAProductRepositoryImpl implements IProductRepository {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        ProductDTO productToSave=new ProductDTO(product);
+        ProductDTO productToSave = new ProductDTO(product);
         em.persist(productToSave);
         em.getTransaction().commit();
         em.close();
-
     }
+
+    @Override
+    public void updateProduct(Product productToUpdate) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(productToUpdate);
+        em.getTransaction().commit();
+        em.close();
+    }
+
 }

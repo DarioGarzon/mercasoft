@@ -8,26 +8,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="edu.uan.mercasoft.controllers.SaleController">
+<VBox prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uan.mercasoft.controllers.SaleController">
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="501.0" prefWidth="738.0" VBox.vgrow="ALWAYS">
-      <children>
+        <children>
             <TextField fx:id="txt_sku_search" layoutX="37.0" layoutY="56.0" promptText="%productCode" />
-            <TextField fx:id="txt_customer_search" layoutX="241.0" layoutY="56.0" promptText="%regularCustomer" />
-            <TableView id="orderDetails" fx:id="orderDetailList" layoutX="8.0" layoutY="120.0" prefHeight="372.0" prefWidth="602.0">
-              <columns>
-                <TableColumn prefWidth="75.0" text="%productCode" />
-                <TableColumn prefWidth="171.0" text="%productName" />
-				<TableColumn prefWidth="75.0" text="%unitPrice" />
-				<TableColumn prefWidth="66.0" text="%quantity" />
-                <TableColumn prefWidth="99.0" text="%orderPrice" />
-              </columns>
-            </TableView>
+            <TextField fx:id="txt_customer_search" layoutX="240.0" layoutY="56.0" promptText="%regularCustomer" />
             <Button fx:id="btn_customer_search" layoutX="423.0" layoutY="53.0" mnemonicParsing="false" onAction="#searchCustomer" text="%search" />
+            <Text fx:id="txt_regular_customer" layoutX="39.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Test Customer" visible="false" />
+            <TableView id="orderDetails" fx:id="orderDetailList" layoutX="8.0" layoutY="120.0" prefHeight="372.0" prefWidth="602.0">
+                <columns>
+                    <TableColumn prefWidth="75.0" text="%productCode" />
+                    <TableColumn prefWidth="171.0" text="%productName" />
+                    <TableColumn prefWidth="75.0" text="%unitPrice" />
+                    <TableColumn prefWidth="66.0" text="%quantity" />
+                    <TableColumn prefWidth="99.0" text="%orderPrice" />
+                </columns>
+            </TableView>
             <Button layoutX="471.0" layoutY="591.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="113.0" text="Button" />
             <Text layoutX="388.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%Subtotal" />
             <Text fx:id="txt_net_price" layoutX="521.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$50.000" />
-            <Text fx:id="txt_regular_customer" layoutX="39.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Test Customer" />
             <Text layoutX="520.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
             <Text layoutX="41.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%productCode" />
             <Text layoutX="241.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%regularCustomer" />
@@ -35,6 +34,7 @@
             <Text fx:id="txt_total_tax" layoutX="527.0" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$8.000" wrappingWidth="40.94401168823242" />
             <Text layoutX="385.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%TotalCost" />
             <Text fx:id="txt_total_price" layoutX="517.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$58.000" wrappingWidth="59.30989235639572" />
-      </children>
+
+        </children>
     </AnchorPane>
 </VBox>

@@ -2,6 +2,7 @@ package edu.uan.mercasoft.repository.JPAImpl;
 
 import edu.uan.mercasoft.domain.Product;
 import edu.uan.mercasoft.domain.ProductType;
+import edu.uan.mercasoft.domain.StockProduct;
 import edu.uan.mercasoft.domain.Supplier;
 
 import javax.persistence.*;
@@ -26,6 +27,15 @@ public class ProductDTO {
     private String unitOfMeasure;
     private SupplierDTO supplier;
     private int version;
+    private int stockQuantity;
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
 
     public ProductDTO(Product product) {
         this.productCode =product.getProductCode();
@@ -72,7 +82,7 @@ public class ProductDTO {
     public void setUnitOfMeasure(String unitOfMeasure) {
         this.unitOfMeasure = unitOfMeasure;
     }
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     public SupplierDTO getSupplier() {
         return supplier;
     }
@@ -112,7 +122,7 @@ public class ProductDTO {
     public void setAppliedTax(short appliedTax) {
         this.appliedTax = appliedTax;
     }
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     public ProductTypeDTO getProductType() {
         return productType;
     }
@@ -129,4 +139,18 @@ public class ProductDTO {
                 this.productType.convertToProductType(),this.expirationDate,this.unitOfMeasure,
                 this.supplier.convertToSupplier(),this.version);
     }
+
+    public ProductDTO(StockProduct stock){
+        this.productCode =stock.getProduct().getProductCode();
+        this.name =stock.getProduct().getName();
+        this.price = stock.getProduct().getPrice();
+        this.appliedTax =stock.getProduct().getAppliedTax();
+        this.productType =new ProductTypeDTO(stock.getProduct().getProductType());
+        this.expirationDate = stock.getProduct().getExpirationDate();
+        this.unitOfMeasure = stock.getProduct().getUnitOfMeasure();
+        this.supplier =new SupplierDTO(stock.getProduct().getSupplier());
+        this.version = stock.getProduct().getVersion();
+        this.stockQuantity = stock.getQuantity();
+    }
+
 }

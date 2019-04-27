@@ -51,9 +51,11 @@ public class LoginController {
         }
         catch (NullPassword nullPassword) {
             blankMessage(txt_password);
-        } catch (NotFoundUser notFoundUser) {
+        }
+        catch (NotFoundUser notFoundUser) {
             notifyAuthError("User");
-        } catch (NotMatchingPassword notMatchingPassword) {
+        }
+        catch (NotMatchingPassword notMatchingPassword) {
             notifyAuthError("Password");
         }
 
@@ -107,7 +109,6 @@ public class LoginController {
     private void removeBlankMessage(TextField blankText){
         blankText.getStyleClass().remove("error");
     }
-
 
     private void GoToApp(){
         stgManager.switchScene(FXMLView.MAIN);

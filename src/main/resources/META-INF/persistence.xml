@@ -14,7 +14,7 @@
         <class>edu.uan.mercasoft.repository.JPAImpl.SupplierDTO</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://192.168.0.13:5432/mercasoft1" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://34.66.247.185:5432/mercasoft" />
             <property name="javax.persistence.jdbc.user" value="postgres" />
             <property name="javax.persistence.jdbc.password" value="postsql" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/> <!-- DB Dialect -->

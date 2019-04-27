@@ -1,13 +1,10 @@
 package edu.uan.mercasoft.controllers;
 
-import edu.uan.mercasoft.domain.Product;
-import edu.uan.mercasoft.domain.ProductType;
-import edu.uan.mercasoft.domain.SaleDetail;
-import edu.uan.mercasoft.domain.Supplier;
+import edu.uan.mercasoft.domain.*;
+import edu.uan.mercasoft.exceptions.NotFoundCustomer;
 import edu.uan.mercasoft.exceptions.NotFoundProduct;
 import edu.uan.mercasoft.repository.JPAImpl.JPAProductRepositoryImpl;
-import edu.uan.mercasoft.useCases.ISaleInteractor;
-import edu.uan.mercasoft.useCases.SaleInteractorImpl;
+import edu.uan.mercasoft.useCases.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener;
@@ -33,8 +30,14 @@ public class SaleController implements Initializable {
     private ObservableMap<String,SaleDetail> orders=FXCollections.observableHashMap();
     private ObservableList<Map.Entry<String, SaleDetail>> orderList = FXCollections.observableArrayList();
     private ISaleInteractor facturator;
+    private ILoyaltyInteractor loyaler;
+    private RegularCustomer customer;
+
     @FXML
     private TextField txt_sku_search;
+
+    @FXML
+    private TextField txt_customer_search;
 
     @FXML
     private TableView orderDetailList;
@@ -48,15 +51,18 @@ public class SaleController implements Initializable {
     @FXML
     private Text txt_net_price;
 
-    public SaleController() {
+    @FXML
+    private Text txt_regular_customer;
 
+    public SaleController() {
         facturator= new SaleInteractorImpl(this);
+        loyaler=new LoyaltyInteractorImpl(this);
     }
 
     @FXML
     private void searchProduct()  {
         try{
-            if(txt_sku_search.getText().trim()==null){
+            if(txt_sku_search.getText().trim().isEmpty()){
                 throw  new NotImplementedException();
             }
             else{
@@ -70,10 +76,21 @@ public class SaleController implements Initializable {
 
     @FXML
     private void searchCustomer(ActionEvent action){
-
+        if(txt_customer_search.getText().trim().isEmpty()){
+            throw  new NotImplementedException();
+        }
+        else{
+            try{
+            RegularCustomer foundClient= loyaler.findCustomer(txt_customer_search.getText().trim());
+            txt_regular_customer.setVisible(true);
+            txt_regular_customer.setText(foundClient.getName()+ " "+ foundClient.getLastName());
+            this.customer=foundClient;
+            }
+            catch (NotFoundCustomer nocustomer ){
+                throw new NotImplementedException();
+            }
+        }
     }
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,13 +102,14 @@ public class SaleController implements Initializable {
         Product testMilk=new Product("01","Leche",1650,(short)19,
                 new ProductType("Lacteos","Leche o sus derivados"),new Date(),"Caja",
                 new Supplier("900","Lecheros de colombia","315"),1)  ;
+        Product testGaseosa=new Product("02","Gaseosa",2500,(short)19,
+                new ProductType("Gaseosas","Bebidas carbonatadas"),new Date(),"Litro",
+                new Supplier("901","Postobon","315"),2)  ;
         SaleDetail testOrder= new SaleDetail(testMilk,(short)1);
         //orders.put("Test",testOrder);
         bindCustomTable();
         JPAProductRepositoryImpl initProduct=new JPAProductRepositoryImpl();
-        //initProduct.saveProduct(testMilk);
-
-
+        //initProduct.saveProduct(testGaseosa);
     }
 
     private void bindCustomTable() {
@@ -108,7 +126,6 @@ public class SaleController implements Initializable {
         orderPriceColumn.setCellValueFactory(param->new SimpleStringProperty(String.valueOf(param.getValue().getValue().getOrderPrice())));
 
         orderDetailList.setItems(orderList);
-
         orders.addListener((MapChangeListener<String, SaleDetail>) change -> {
             orderList.removeAll(orders.entrySet());
             orderList.addAll(orders.entrySet());
@@ -116,8 +133,6 @@ public class SaleController implements Initializable {
         });
         orderDetailList.getColumns().setAll(skuColumn,productNameColumn,unitPriceColumn,quantityColumn,orderPriceColumn);
         orderDetailList.getColumns().set(0,skuColumn);
-
-
     }
 
     private void updateTotalValues(ObservableMap<String, SaleDetail> orders) {

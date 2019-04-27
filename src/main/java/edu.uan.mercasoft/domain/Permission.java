@@ -26,6 +26,4 @@ public class Permission {
         this.name = name;
         this.description = description;
     }
-
-
 }

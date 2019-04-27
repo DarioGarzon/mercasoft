@@ -12,6 +12,15 @@ public class Product {
     private String unitOfMeasure;
     private Supplier supplier;
     private int version;
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public float getPrice() {
         return price;
@@ -97,4 +106,5 @@ public class Product {
         this.supplier = supplier;
         this.version = version;
     }
+
 }

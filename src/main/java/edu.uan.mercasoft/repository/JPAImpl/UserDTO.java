@@ -36,7 +36,7 @@ public class UserDTO extends NaturalPersonDTO {
         this.password = password;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     public RoleDTO getRole() {
         return role;
     }

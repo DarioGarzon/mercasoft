@@ -1,5 +1,7 @@
 package edu.uan.mercasoft.repository.JPAImpl;
 
+import edu.uan.mercasoft.domain.RegularCustomer;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Date;
@@ -41,5 +43,9 @@ public class RegularCustomerDTO extends NaturalPersonDTO {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public RegularCustomerDTO(RegularCustomer customer) {
+        this.subscriptionDate=customer.getSubscriptionDate();
     }
 }

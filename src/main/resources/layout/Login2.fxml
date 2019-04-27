@@ -11,14 +11,10 @@
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
 
     <ImageView id="icono" layoutX="229.0" layoutY="133.0" pickOnBounds="true">
-
         <Image url="/assets/icono.png" />
-
     </ImageView>
     <ImageView id="icono ORI" fitHeight="144.0" fitWidth="461.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true">
-
         <Image preserveRatio="true" smooth="true" url="/assets/iconoORI.png" />
-
     </ImageView>
     <ImageView id="icon_960_720" fitHeight="98.0" fitWidth="83.0" layoutX="164.0" layoutY="205.0" pickOnBounds="true">
       <image>
