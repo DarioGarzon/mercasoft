@@ -17,6 +17,9 @@ public class InventoryInteractorImpl implements IInventoryInteractor {
         persistence= new PersistenceFacade();
     }
 
+    public List<Product> getProducts(ProductAdquisitionController productAdquisitionController) throws NotFoundProduct {
+        return product;
+    }
 
     @Override
     public void addProducts(List<Product> productList) throws NotFoundProduct {

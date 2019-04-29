@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface IInventoryInteractor {
     void addProducts(List<Product> productList) throws NotFoundProduct;
+
+    void getProduct(String idProduct) throws NotFoundProduct;
 }
