@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+          xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <children>
+                <ImageView id="mbricartadd_99553" disable="true" fitHeight="159.0" fitWidth="152.0" layoutX="14.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image preserveRatio="true" smooth="true" url="/assets/iconcompra.png" />
+                    </image>
+                </ImageView>
+                <Text disable="false" focusTraversable="false" layoutX="42.0" layoutY="192.0" scaleX="1.9040153226075716" scaleY="1.877141458639256" smooth="false" strikethrough="false" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="9.4" strokeType="CENTERED" strokeWidth="10.0" text="Ingrese:" textAlignment="JUSTIFY" underline="false">
+                    <font>
+                        <Font name="Microsoft Yi Baiti" size="12.0" />
+                    </font>
+                </Text>
+                <Text disable="false" fill="BLACK" focusTraversable="false" layoutX="185.0" layoutY="248.0" scaleX="1.8505855172096353" scaleY="1.761358564536868" smooth="false" strikethrough="false" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="9.4" strokeType="CENTERED" strokeWidth="10.0" text="Id Producto:" textAlignment="JUSTIFY" underline="false">
+                    <font>
+                        <Font name="Microsoft Yi Baiti" size="15.0" fx:id="x1" />
+                    </font>
+                </Text>
+                <TextField layoutX="283.0" layoutY="234.0" prefWidth="200.0" />
+                <TextField layoutX="283.0" layoutY="191.0" prefWidth="200.0" />
+                <Text disable="false" fill="#bfbfbf" focusTraversable="false" layoutX="304.0" layoutY="204.0" scaleX="1.9040153226075716" scaleY="1.877141458639256" smooth="false" strikethrough="false" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="9.4" strokeType="CENTERED" strokeWidth="10.0" text="Proveedor " textAlignment="JUSTIFY" underline="false">
+                    <font>
+                        <Font name="Microsoft Yi Baiti" size="9.0" />
+                    </font>
+                </Text>
+                <Text disable="false" fill="BLACK" focusTraversable="false" font="$x1" layoutX="178.0" layoutY="300.0" scaleX="1.8505855172096353" scaleY="1.761358564536868" smooth="false" strikethrough="false" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="9.4" strokeType="CENTERED" strokeWidth="10.0" text="Cantidad:" textAlignment="JUSTIFY" underline="false" />
+                <TextArea layoutX="283.0" layoutY="287.0" prefHeight="23.130615234375" prefWidth="200.0" text="" wrapText="true" />
+                <Line endX="100.0" layoutX="7.0" layoutY="199.0" startX="21.0" startY="1.0" />
+                <Button layoutX="277.0" layoutY="340.0" mnemonicParsing="false" text="Confirmar" />
+                <Button layoutX="455.0" layoutY="340.0" mnemonicParsing="false" text="Cancelar " />
+                <Button layoutX="108.0" layoutY="340.0" mnemonicParsing="false" text="Menú" />
+                <ImageView id="tituloadquirir" fitHeight="116.0" fitWidth="387.0" layoutX="185.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image preserveRatio="true" smooth="true" url="/assets/tituloadquirir.png" />
+                    </image>
+                </ImageView>
+            <Text disable="false" fill="BLACK" focusTraversable="false" layoutX="166.0" layoutY="208.0" smooth="false" strikethrough="false" strokeLineCap="BUTT" strokeLineJoin="BEVEL" strokeMiterLimit="9.4" strokeType="CENTERED" strokeWidth="10.0" text="Nombre:" textAlignment="JUSTIFY" underline="false">
+               <font>
+                  <Font name="Microsoft Yi Baiti" size="25.0" fx:id="x11" />
+               </font>
+            </Text>
+            </children>
+        </AnchorPane>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+</GridPane>

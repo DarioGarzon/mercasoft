@@ -39,6 +39,15 @@ public enum FXMLView {
             return new LoginController(stage);
         }
 
+        @Override
+        int getWidth() {
+            return 400;
+        }
+
+        @Override
+        int getHeight() {
+            return 540;
+        }
     },
 
     SALE{
@@ -61,7 +70,7 @@ public enum FXMLView {
     abstract String getTitle();
     abstract String getFxmlFile();
     abstract Object getController(StageManager stage);
-    int getWidth(){return 640;}
+    int getWidth(){return 600;}
     int getHeight(){return 480;}
     String getStringFromResourceBundle(String key){
         return ResourceBundle.getBundle("Bundle").getString(key);
