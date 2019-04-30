@@ -7,6 +7,10 @@ import edu.uan.mercasoft.domain.Supplier;
 
 import javax.persistence.*;
 import java.util.Date;
+
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+
 @Entity
 @Table(name = "Product")
 @NamedQueries({
@@ -14,6 +18,8 @@ import java.util.Date;
                 query = "SELECT c FROM ProductDTO c WHERE c.productCode = :productCode ORDER BY c.version desc"),
         @NamedQuery(name = "ProductDTO.findByCodeContains",
                 query = "SELECT c FROM UserDTO c WHERE c.userName like :productCode"),
+        @NamedQuery(name = "ProductDTO.findByAll",
+                query = "SELECT c FROM UserDTO c"),
 }
 )
 public class ProductDTO {
@@ -82,7 +88,7 @@ public class ProductDTO {
     public void setUnitOfMeasure(String unitOfMeasure) {
         this.unitOfMeasure = unitOfMeasure;
     }
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = {MERGE})
     public SupplierDTO getSupplier() {
         return supplier;
     }
@@ -122,7 +128,7 @@ public class ProductDTO {
     public void setAppliedTax(short appliedTax) {
         this.appliedTax = appliedTax;
     }
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = {PERSIST,MERGE})
     public ProductTypeDTO getProductType() {
         return productType;
     }

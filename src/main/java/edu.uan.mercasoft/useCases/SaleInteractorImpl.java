@@ -1,6 +1,7 @@
 package edu.uan.mercasoft.useCases;
 
 import edu.uan.mercasoft.controllers.SaleController;
+import edu.uan.mercasoft.domain.Bill;
 import edu.uan.mercasoft.domain.BusinessFacade;
 import edu.uan.mercasoft.domain.PersistenceFacade;
 import edu.uan.mercasoft.domain.Product;
@@ -26,5 +27,10 @@ public class SaleInteractorImpl implements ISaleInteractor {
     @Override
     public float checkDiscountByQuantity(Product product, double quantity){
         return businessFacade.checkDiscountByQuantity(product,quantity);
+    }
+
+    @Override
+    public void saveTransaction(Bill actualTransaction) {
+        persistenceFacade.saveTransaction(actualTransaction);
     }
 }

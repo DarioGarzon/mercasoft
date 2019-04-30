@@ -13,11 +13,11 @@ public class ProductListingController {
 
     public ProductListingController()
     {
-        inventory = new InventoryInteractorImpl(this);
+        inventory = new InventoryInteractorImpl();
     }
 
     public List<Product> listProduct() throws NotFoundProduct
     {
-        inventory.getProduct(idProduct);
+        return inventory.getProducts();
     }
 }

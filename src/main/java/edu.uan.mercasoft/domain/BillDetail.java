@@ -1,6 +1,6 @@
 package edu.uan.mercasoft.domain;
 
-public class SaleDetail {
+public class BillDetail {
     private Product product;
     private short quantity;
     private float discount;
@@ -36,7 +36,7 @@ public class SaleDetail {
         this.discount = discount;
     }
 
-    public SaleDetail(Product product, short quantity) {
+    public BillDetail(Product product, short quantity) {
         this.product = product;
         this.quantity = quantity;
     }

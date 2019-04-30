@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JPAProductRepositoryImpl implements IProductRepository {
@@ -44,5 +45,17 @@ public class JPAProductRepositoryImpl implements IProductRepository {
         em.getTransaction().commit();
         em.close();
     }
+
+    @Override
+    public List<Product> getProducts() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<ProductDTO> customQuery = em.createNamedQuery("ProductDTO.findByCode", ProductDTO.class);
+        List<ProductDTO> foundProducts = customQuery.getResultList();
+        List<Product> products=new ArrayList<>();
+        foundProducts.forEach(it->products.add(it.convertToProduct()));
+        return products;
+    }
+
 
 }

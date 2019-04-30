@@ -13,7 +13,7 @@ public class Main extends Application {
         StageManager stageManager=new StageManager(primaryStage);
         stageManager.setLocation("es");
         JPAUserRepositoryImpl initBasicUser=new JPAUserRepositoryImpl();
-        initBasicUser.saveUser("C46D76F62D2441BD0F314E016FF14BC37F204465D213391EF1F2D8A286A79061");
+        //initBasicUser.saveUser("C46D76F62D2441BD0F314E016FF14BC37F204465D213391EF1F2D8A286A79061");
         stageManager.switchScene(FXMLView.LOGIN);
     }
 

@@ -4,6 +4,9 @@ import edu.uan.mercasoft.domain.User;
 
 import javax.persistence.*;
 
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+
 @Entity
 @Table(name = "MercaSoft_User")
 @NamedQueries({
@@ -36,7 +39,7 @@ public class UserDTO extends NaturalPersonDTO {
         this.password = password;
     }
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = {MERGE,PERSIST})
     public RoleDTO getRole() {
         return role;
     }

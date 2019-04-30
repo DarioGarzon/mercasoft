@@ -16,7 +16,6 @@
                         <fx:include fx:id="rolesContent" source="RoleTab.fxml" />
                     </Tab>
                 <Tab text="%salesTab"  >
-
                         <fx:include fx:id="salesContent" source="SaleTab.fxml" />
                     </Tab>
 

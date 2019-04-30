@@ -1,12 +1,9 @@
 package edu.uan.mercasoft.controllers;
 
 import edu.uan.mercasoft.domain.Product;
-import edu.uan.mercasoft.domain.StockProduct;
 import edu.uan.mercasoft.exceptions.NotFoundProduct;
 import edu.uan.mercasoft.useCases.IInventoryInteractor;
 import edu.uan.mercasoft.useCases.InventoryInteractorImpl;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 
 import java.util.List;
 
@@ -16,7 +13,7 @@ public class ProductAdquisitionController {
     private IInventoryInteractor inventory;
 
     public ProductAdquisitionController() {
-        inventory= new InventoryInteractorImpl(this);
+        inventory= new InventoryInteractorImpl();
     }
 
     public void adquireProducts() throws NotFoundProduct {

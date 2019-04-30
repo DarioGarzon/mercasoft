@@ -1,27 +1,30 @@
 package edu.uan.mercasoft.domain;
 
 import com.sun.istack.internal.NotNull;
+import edu.uan.mercasoft.exceptions.NotFoundCustomer;
 import edu.uan.mercasoft.exceptions.NotFoundProduct;
 import edu.uan.mercasoft.exceptions.NotFoundUser;
 import edu.uan.mercasoft.exceptions.NotMatchingPassword;
-import edu.uan.mercasoft.repository.ICustomerRepository;
-import edu.uan.mercasoft.repository.IInventoryRepository;
-import edu.uan.mercasoft.repository.IProductRepository;
-import edu.uan.mercasoft.repository.IUserRepository;
+import edu.uan.mercasoft.repository.*;
+import edu.uan.mercasoft.repository.JPAImpl.JPABillRepositoryImpl;
 import edu.uan.mercasoft.repository.JPAImpl.JPACustomerRepositoryImpl;
 import edu.uan.mercasoft.repository.JPAImpl.JPAProductRepositoryImpl;
 import edu.uan.mercasoft.repository.JPAImpl.JPAUserRepositoryImpl;
+
+import java.util.List;
 
 public class PersistenceFacade {
     private IUserRepository usersRepo;
     private IProductRepository productRepo;
     private ICustomerRepository customerRepo;
+    private IBillRepository billRepo;
 
 
     public PersistenceFacade() {
         usersRepo=new JPAUserRepositoryImpl();
         productRepo= new JPAProductRepositoryImpl();
         customerRepo= new JPACustomerRepositoryImpl();
+        billRepo= new JPABillRepositoryImpl();
     }
 
     public User findUserByUserNameAndPassword(@NotNull String userName, @NotNull String password) throws NotFoundUser, NotMatchingPassword {
@@ -37,7 +40,7 @@ public class PersistenceFacade {
     }
 
 
-    public RegularCustomer findCustomerByDocument(String documentNumber) {
+    public RegularCustomer findCustomerByDocument(String documentNumber) throws NotFoundCustomer {
         return  customerRepo.getCustomerByDocument(documentNumber);
     }
 
@@ -47,4 +50,11 @@ public class PersistenceFacade {
     }
 
 
+    public void saveTransaction(Bill actualTransaction) {
+        billRepo.saveTransaction(actualTransaction);
+    }
+
+    public List<Product> getProducts() {
+        return productRepo.getProducts();
+    }
 }

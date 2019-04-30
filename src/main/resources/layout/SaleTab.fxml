@@ -24,7 +24,7 @@
                     <TableColumn prefWidth="99.0" text="%orderPrice" />
                 </columns>
             </TableView>
-            <Button layoutX="471.0" layoutY="591.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="113.0" text="Button" />
+            <Button layoutX="471.0" layoutY="591.0" mnemonicParsing="false" onAction="#concreteBill" prefHeight="32.0" prefWidth="113.0" text="\%Accept" />
             <Text layoutX="388.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%Subtotal" />
             <Text fx:id="txt_net_price" layoutX="521.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$50.000" />
             <Text layoutX="520.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
