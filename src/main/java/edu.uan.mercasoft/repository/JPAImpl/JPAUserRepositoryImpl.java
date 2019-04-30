@@ -1,6 +1,8 @@
 package edu.uan.mercasoft.repository.JPAImpl;
 
 import edu.uan.mercasoft.domain.NaturalPerson;
+import edu.uan.mercasoft.domain.Permission;
+import edu.uan.mercasoft.domain.Role;
 import edu.uan.mercasoft.domain.User;
 import edu.uan.mercasoft.exceptions.NotFoundUser;
 import edu.uan.mercasoft.repository.IUserRepository;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JPAUserRepositoryImpl implements IUserRepository {
+
     public User getUserByUserName(String userName) throws NotFoundUser {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
@@ -30,24 +33,37 @@ public class JPAUserRepositoryImpl implements IUserRepository {
         return foundUser.get(0).ConvertToUser();
     }
 
-    public void saveUser(String hashedPass){
+    @Override
+    public void savePermission(Permission permissionToSave) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        RoleDTO admin=new RoleDTO();
-        admin.setName("Administrador");
-        List<PermissionDTO> grants=new ArrayList<>();
-        //grants.add(new PermissionDTO("vender","permiso que le deja vender"));
-        grants.add(new PermissionDTO("adicionar producto","permiso que le añadir un nuevo producto"));
-        admin.setPermissionList(grants);
-        UserDTO userToSave=new UserDTO("test1", hashedPass,admin);
-        userToSave.setDocumentNumber("1031122298");
-        userToSave.setRole(admin);
-        userToSave.setName("Marco");
-        userToSave.setLastName("Gonzalez");
-        em.persist(userToSave);
+        em.persist(new PermissionDTO(permissionToSave));
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    @Override
+    public void saveRole(Role roleToSave) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(new RoleDTO(roleToSave));
+        em.getTransaction().commit();
+        em.close();
+    }
+
+
+    public void saveUser(User userToSave){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        UserDTO userDTOToSave=new UserDTO(userToSave);
+        em.merge(userDTOToSave);
         em.getTransaction().commit();
         em.close();
         //em.flush();
     }
+
+
 }

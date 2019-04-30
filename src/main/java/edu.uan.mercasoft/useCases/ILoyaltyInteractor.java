@@ -6,5 +6,6 @@ import edu.uan.mercasoft.exceptions.NotFoundCustomer;
 public interface ILoyaltyInteractor {
 
 
-    public RegularCustomer findCustomer(String documentNumber ) throws NotFoundCustomer;
+     RegularCustomer findCustomer(String documentNumber ) throws NotFoundCustomer;
+     void saveCustomer(RegularCustomer customerToLoad);
 }

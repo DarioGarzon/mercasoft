@@ -1,6 +1,8 @@
 package edu.uan.mercasoft.repository.JPAImpl;
 
 import edu.uan.mercasoft.domain.Product;
+import edu.uan.mercasoft.domain.ProductType;
+import edu.uan.mercasoft.domain.Supplier;
 import edu.uan.mercasoft.exceptions.NotFoundProduct;
 import edu.uan.mercasoft.repository.IProductRepository;
 
@@ -31,7 +33,7 @@ public class JPAProductRepositoryImpl implements IProductRepository {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         ProductDTO productToSave = new ProductDTO(product);
-        em.persist(productToSave);
+        em.merge(productToSave);
         em.getTransaction().commit();
         em.close();
     }
@@ -41,7 +43,8 @@ public class JPAProductRepositoryImpl implements IProductRepository {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.merge(productToUpdate);
+        ProductDTO productData=new ProductDTO(productToUpdate);
+        em.merge(productData);
         em.getTransaction().commit();
         em.close();
     }
@@ -55,6 +58,28 @@ public class JPAProductRepositoryImpl implements IProductRepository {
         List<Product> products=new ArrayList<>();
         foundProducts.forEach(it->products.add(it.convertToProduct()));
         return products;
+    }
+
+    @Override
+    public void saveSupplier(Supplier supplierToSave) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        SupplierDTO supToSave = new SupplierDTO(supplierToSave);
+        em.persist(supToSave);
+        em.getTransaction().commit();
+        em.close();
+    }
+
+    @Override
+    public void saveProductType(ProductType productType) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        ProductTypeDTO productTypeToSave = new ProductTypeDTO(productType);
+        em.persist(productTypeToSave);
+        em.getTransaction().commit();
+        em.close();
     }
 
 

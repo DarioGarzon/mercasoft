@@ -19,7 +19,7 @@ public class JPACustomerRepositoryImpl implements ICustomerRepository {
         TypedQuery<RegularCustomerDTO> customQuery = em.createNamedQuery("RegularCustomerDTO.findBydocumentNumber", RegularCustomerDTO.class);
         customQuery.setParameter("documentNumber", documentNumber);
         List<RegularCustomerDTO> foundCustomer= customQuery.setMaxResults(1).getResultList();
-        if (foundCustomer == null) {
+        if (foundCustomer.size()<1) {
             throw new NotFoundCustomer();
         }
         return foundCustomer.get(0).convertToCustomer();

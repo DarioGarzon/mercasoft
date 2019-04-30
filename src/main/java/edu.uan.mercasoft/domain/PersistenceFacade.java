@@ -57,4 +57,32 @@ public class PersistenceFacade {
     public List<Product> getProducts() {
         return productRepo.getProducts();
     }
+
+    public void savePermission(Permission permissionToAdd) {
+        usersRepo.savePermission(permissionToAdd);
+    }
+
+    public void saveRole(Role roleToAdd) {
+        usersRepo.saveRole(roleToAdd);
+    }
+
+    public void saveUser(User userToAdd) {
+        usersRepo.saveUser(userToAdd);
+    }
+
+    public void saveSupplier(Supplier supplierToAdd){
+        productRepo.saveSupplier(supplierToAdd);
+    }
+
+    public void saveProductType(ProductType productType) {
+        productRepo.saveProductType(productType);
+    }
+
+    public void saveProduct(Product productToLoad) {
+        productRepo.saveProduct(productToLoad);
+    }
+
+    public void saveRegularCustomer(RegularCustomer customerToAdd) {
+        customerRepo.saveCustomer(customerToAdd);
+    }
 }

@@ -52,7 +52,6 @@ public class BillDTO {
     }
 
     @ManyToOne(cascade = CascadeType.MERGE)
-
     public UserDTO getSeller() {
         return seller;
     }

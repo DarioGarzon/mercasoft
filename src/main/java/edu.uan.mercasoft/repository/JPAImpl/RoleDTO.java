@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.*;
+
 @Entity
 @Table(name = "Role")
 public class RoleDTO {
@@ -21,7 +23,7 @@ public class RoleDTO {
         this.name = name;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {MERGE})
     @JoinTable(
             name = "Role_Permission",
             joinColumns = @JoinColumn(name = "role_name"),

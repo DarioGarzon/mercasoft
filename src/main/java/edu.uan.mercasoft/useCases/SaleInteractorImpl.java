@@ -31,6 +31,7 @@ public class SaleInteractorImpl implements ISaleInteractor {
 
     @Override
     public void saveTransaction(Bill actualTransaction) {
+
         persistenceFacade.saveTransaction(actualTransaction);
     }
 }

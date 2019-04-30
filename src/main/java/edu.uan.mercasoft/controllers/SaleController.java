@@ -15,11 +15,18 @@ import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.net.URL;
@@ -32,6 +39,7 @@ public class SaleController implements Initializable {
     private ISaleInteractor facturator;
     private ILoyaltyInteractor loyaler;
     private RegularCustomer customer;
+    private IInventoryInteractor inventoryActuator;
     private Bill actualTransaction;
 
     @FXML
@@ -57,7 +65,8 @@ public class SaleController implements Initializable {
 
     public SaleController() {
         facturator= new SaleInteractorImpl(this);
-        loyaler=new LoyaltyInteractorImpl(this);
+        loyaler=new LoyaltyInteractorImpl();
+        inventoryActuator= new InventoryInteractorImpl();
         actualTransaction= new Bill(Session.getInstance().getActualUser());
     }
 
@@ -76,20 +85,26 @@ public class SaleController implements Initializable {
         }
     }
 
+
     @FXML
     private void searchCustomer(ActionEvent action){
+        searchCustomer();
+    }
+
+    private void searchCustomer(){
         if(txt_customer_search.getText().trim().isEmpty()){
             throw  new NotImplementedException();
         }
         else{
             try{
-            RegularCustomer foundClient= loyaler.findCustomer(txt_customer_search.getText().trim());
-            txt_regular_customer.setVisible(true);
-            txt_regular_customer.setText(foundClient.getName()+ " "+ foundClient.getLastName());
-            this.customer=foundClient;
+                RegularCustomer foundClient= loyaler.findCustomer(txt_customer_search.getText().trim());
+                txt_regular_customer.setVisible(true);
+                txt_regular_customer.setText(foundClient.getName()+ " "+ foundClient.getLastName());
+                this.customer=foundClient;
             }
             catch (NotFoundCustomer nocustomer ){
-                throw new NotImplementedException();
+                txt_regular_customer.setVisible(true);
+                txt_regular_customer.setText("Cliente no encontrado");
             }
         }
     }
@@ -101,23 +116,13 @@ public class SaleController implements Initializable {
                 searchProduct();
             }
         });
-        Product testMilk=new Product("01","Leche",1650,(short)19,
-                new ProductType("Lacteos","Leche o sus derivados"),new Date(),"Caja",
-                new Supplier("900","Lecheros de colombia","315"),1)  ;
-        Product testGaseosa=new Product("02","Gaseosa",2500,(short)19,
-                new ProductType("Gaseosas","Bebidas carbonatadas"),new Date(),"Litro",
-                new Supplier("901","Postobon","315"),2)  ;
-        BillDetail testOrder= new BillDetail(testMilk,(short)1);
-
+        txt_customer_search.setOnKeyPressed((event) -> {
+            if(event.getCode() == KeyCode.ENTER) {
+                searchCustomer();
+            }
+        });
         //orders.put("Test",testOrder);
         bindCustomTable();
-        JPAProductRepositoryImpl initProduct=new JPAProductRepositoryImpl();
-        initProduct.saveProduct(testGaseosa);
-        initProduct.saveProduct(testMilk);
-        JPACustomerRepositoryImpl initCustomer= new JPACustomerRepositoryImpl();
-        NaturalPerson persona= new NaturalPerson("marco", "gonzalez","122");
-        RegularCustomer testClient= new RegularCustomer(new Date(),"31256",(short) 0,persona,"mi casa");
-        //initCustomer.saveCustomer(testClient);
     }
 
     private void bindCustomTable() {
@@ -179,6 +184,33 @@ public class SaleController implements Initializable {
         }
         actualTransaction= new Bill(Float.parseFloat(txt_total_price.getText()),
                 details,Session.getInstance().getActualUser(),customer);
+        inventoryActuator.subtracteProducts(details);
         facturator.saveTransaction(actualTransaction);
+        cleanFields();
+        showMessage("Compra realizada con exito");
+    }
+
+    private void showMessage(String message) {
+        Stage dialogStage = new Stage();
+        dialogStage.initModality(Modality.APPLICATION_MODAL);
+        Text textToPost= new Text(message);
+        Button confirmButton=new Button("Ok");
+        confirmButton.setOnAction(actionEvent->dialogStage.close());
+        VBox vbox = new VBox(textToPost,confirmButton );
+        dialogStage.setTitle("Compra Exitosa");
+        vbox.setAlignment(Pos.CENTER);
+        vbox.setPadding(new Insets(40));
+        dialogStage.setScene(new Scene(vbox));
+        dialogStage.show();
+    }
+
+
+    public void cleanFields(){
+        customer=null;
+        orderList.clear();
+        orders.clear();
+        txt_sku_search.clear();
+        txt_customer_search.clear();
+        txt_regular_customer.setVisible(false);
     }
 }

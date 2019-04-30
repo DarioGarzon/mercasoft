@@ -1,0 +1,17 @@
+.table-row-cell:odd {
+    -fx-text-fill: blue;
+    -fx-background-color: lightblue;
+    -fx-fill: blue;
+}
+
+.table-row-cell:even {
+    -fx-background-color: blue;
+}
+
+.table-row-cell:even .text{
+    -fx-fill: white ;
+}
+
+.table-row-cell:odd .text{
+    -fx-fill: black ;
+}

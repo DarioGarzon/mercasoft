@@ -41,12 +41,12 @@ public enum FXMLView {
 
         @Override
         int getWidth() {
-            return 400;
+            return 380;
         }
 
         @Override
         int getHeight() {
-            return 540;
+            return 470;
         }
     },
 
@@ -70,8 +70,8 @@ public enum FXMLView {
     abstract String getTitle();
     abstract String getFxmlFile();
     abstract Object getController(StageManager stage);
-    int getWidth(){return 600;}
-    int getHeight(){return 480;}
+    int getWidth(){return 640;}
+    int getHeight(){return 680;}
     String getStringFromResourceBundle(String key){
         return ResourceBundle.getBundle("Bundle").getString(key);
     }

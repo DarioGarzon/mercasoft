@@ -25,6 +25,10 @@ public class LoginController {
     @FXML
     private TextField txt_username;
 
+
+    @FXML
+    private Text txt_auth_error;
+
     @FXML
     private TextField txt_password;
     private IAuthenticateInteractor authenticator;
@@ -65,12 +69,10 @@ public class LoginController {
         switch (type){
             case "User":
                 postErrorMessage("Usuario no encontrado");
-                throw new NotImplementedException();
-                //break;
+                break;
             case "Password":
                 postErrorMessage("Contraseña no coincide");
-                throw new NotImplementedException();
-                //break;
+                break;
             default:
                 break;
         }
@@ -90,19 +92,12 @@ public class LoginController {
     }
 
     private void postErrorMessage(String text){
-        Stage dialogStage = new Stage();
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
-        Text textToPost= new Text(text);
-        Button confirmButton=new Button("Ok");
-        confirmButton.setOnAction(actionEvent->dialogStage.close());
-        VBox vbox = new VBox(textToPost,confirmButton );
-        vbox.setAlignment(Pos.CENTER);
-        vbox.setPadding(new Insets(15));
-        dialogStage.setScene(new Scene(vbox));
-        dialogStage.show();
+        txt_auth_error.setText(text);
+        txt_auth_error.setVisible(true);
     }
 
     private void blankMessage(TextField blankText){
+        txt_auth_error.setVisible(false);
         blankText.getStyleClass().add("error");
     }
 
