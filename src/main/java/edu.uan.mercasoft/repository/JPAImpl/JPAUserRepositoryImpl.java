@@ -30,7 +30,7 @@ public class JPAUserRepositoryImpl implements IUserRepository {
         if(foundUser.size()<1){
             throw new NotFoundUser();
         }
-        return foundUser.get(0).ConvertToUser();
+        return foundUser.get(0).convertToUser();
     }
 
     @Override

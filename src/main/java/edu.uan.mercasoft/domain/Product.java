@@ -13,6 +13,15 @@ public class Product {
     private Supplier supplier;
     private int version;
     private int quantity;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getQuantity() {
         return quantity;

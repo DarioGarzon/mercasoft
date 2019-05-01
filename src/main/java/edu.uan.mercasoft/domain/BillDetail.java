@@ -1,6 +1,7 @@
 package edu.uan.mercasoft.domain;
 
 public class BillDetail {
+
     private Product product;
     private short quantity;
     private float discount;
@@ -9,9 +10,6 @@ public class BillDetail {
     public float getOrderPrice() {
         return (product.getPrice()*quantity*(1-discount));
     }
-
-
-
     public Product getProduct() {
         return product;
     }
@@ -36,8 +34,14 @@ public class BillDetail {
         this.discount = discount;
     }
 
-    public BillDetail(Product product, short quantity) {
+    public void setOrderPrice(float orderPrice) {
+        this.orderPrice = orderPrice;
+    }
+
+    public BillDetail(Product product, short quantity, float discount, float orderPrice) {
         this.product = product;
         this.quantity = quantity;
+        this.discount = discount;
+        this.orderPrice = orderPrice;
     }
 }

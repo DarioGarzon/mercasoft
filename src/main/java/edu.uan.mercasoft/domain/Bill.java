@@ -1,5 +1,6 @@
 package edu.uan.mercasoft.domain;
 
+import java.util.Date;
 import java.util.List;
 
 public class Bill {
@@ -8,6 +9,7 @@ public class Bill {
     private List<BillDetail> detailList;
     private User seller;
     private RegularCustomer buyer;
+    private Date date;
 
     public int getId() {
         return id;
@@ -49,14 +51,29 @@ public class Bill {
         this.buyer = buyer;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public Bill(User seller) {
         this.seller = seller;
     }
 
-    public Bill(float totalValue, List<BillDetail> detailList, User seller, RegularCustomer buyer) {
+    public Bill(int id,float totalValue, List<BillDetail> detailList, User seller, RegularCustomer buyer,Date date) {
+        this.id=id;
         this.totalValue = totalValue;
         this.detailList = detailList;
         this.seller = seller;
         this.buyer = buyer;
+        this.date=date;
     }
+    public Bill(int id,float totalValue, List<BillDetail> detailList, User seller,Date date) {
+        this(id,totalValue,detailList,seller,null,date);
+    }
+
+
 }

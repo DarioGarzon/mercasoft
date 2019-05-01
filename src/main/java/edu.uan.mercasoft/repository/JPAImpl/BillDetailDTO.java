@@ -29,6 +29,7 @@ public class BillDetailDTO {
     private float orderPrice;
 
     public float getOrderPrice() {
+        if(product==null) return 0;
         return (product.getPrice()*quantity*(1-discount));
     }
 
@@ -74,5 +75,12 @@ public class BillDetailDTO {
         this.quantity = billDetail.getQuantity();
         this.discount = billDetail.getDiscount();
         this.orderPrice = billDetail.getOrderPrice();
+    }
+
+    public BillDetail convertToBillDetail(){
+        return new BillDetail(this.product.convertToProduct(),this.quantity,this.discount,this.orderPrice);
+    }
+
+    public BillDetailDTO() {
     }
 }

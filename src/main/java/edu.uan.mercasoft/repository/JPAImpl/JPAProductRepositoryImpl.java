@@ -21,7 +21,7 @@ public class JPAProductRepositoryImpl implements IProductRepository {
         TypedQuery<ProductDTO> customQuery = em.createNamedQuery("ProductDTO.findByCode", ProductDTO.class);
         customQuery.setParameter("productCode", productCode);
         List<ProductDTO> foundProduct = customQuery.setMaxResults(1).getResultList();
-        if (foundProduct == null) {
+        if (foundProduct.size()<1) {
             throw new NotFoundProduct();
         }
         return foundProduct.get(0).convertToProduct();
@@ -29,10 +29,17 @@ public class JPAProductRepositoryImpl implements IProductRepository {
 
     @Override
     public void saveProduct(Product product) {
+        //saveProductType(product.getProductType());
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+        ProductTypeDTO productTypeToSave = new ProductTypeDTO(product.getProductType());
+        SupplierDTO supToSave = new SupplierDTO(product.getSupplier());
         ProductDTO productToSave = new ProductDTO(product);
+        productToSave.setProductType(productTypeToSave);
+        productToSave.setSupplier(supToSave);
+        em.merge(productTypeToSave);
+        em.merge(supToSave);
         em.merge(productToSave);
         em.getTransaction().commit();
         em.close();
@@ -43,8 +50,14 @@ public class JPAProductRepositoryImpl implements IProductRepository {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        ProductDTO productData=new ProductDTO(productToUpdate);
-        em.merge(productData);
+        ProductTypeDTO productTypeToSave = new ProductTypeDTO(productToUpdate.getProductType());
+        SupplierDTO supToSave = new SupplierDTO(productToUpdate.getSupplier());
+        ProductDTO productToSave = new ProductDTO(productToUpdate);
+        productToSave.setProductType(productTypeToSave);
+        productToSave.setSupplier(supToSave);
+        em.merge(productTypeToSave);
+        em.merge(supToSave);
+        em.merge(productToSave);
         em.getTransaction().commit();
         em.close();
     }
@@ -65,10 +78,12 @@ public class JPAProductRepositoryImpl implements IProductRepository {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
+
         SupplierDTO supToSave = new SupplierDTO(supplierToSave);
-        em.persist(supToSave);
+        em. persist(supToSave);
         em.getTransaction().commit();
         em.close();
+
     }
 
     @Override
@@ -76,8 +91,6 @@ public class JPAProductRepositoryImpl implements IProductRepository {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistenceUnit");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        ProductTypeDTO productTypeToSave = new ProductTypeDTO(productType);
-        em.persist(productTypeToSave);
         em.getTransaction().commit();
         em.close();
     }

@@ -64,7 +64,7 @@ public class SaleController implements Initializable {
     private Text txt_regular_customer;
 
     public SaleController() {
-        facturator= new SaleInteractorImpl(this);
+        facturator= new SaleInteractorImpl();
         loyaler=new LoyaltyInteractorImpl();
         inventoryActuator= new InventoryInteractorImpl();
         actualTransaction= new Bill(Session.getInstance().getActualUser());
@@ -72,16 +72,19 @@ public class SaleController implements Initializable {
 
     @FXML
     private void searchProduct()  {
+        txt_regular_customer.setVisible(false);
         try{
             if(txt_sku_search.getText().trim().isEmpty()){
-                throw  new NotImplementedException();
+                txt_regular_customer.setVisible(true);
+                txt_regular_customer.setText("Por favor digite el codigo de producto a buscar");
             }
             else{
                 Product readenProduct =facturator.searchProduct(txt_sku_search.getText().trim());
                 addToOrder(readenProduct);
             }
         }catch (NotFoundProduct noProduct){
-            throw new NotImplementedException();
+            txt_regular_customer.setVisible(true);
+            txt_regular_customer.setText("Producto no encontrado");
         }
     }
 
@@ -92,8 +95,10 @@ public class SaleController implements Initializable {
     }
 
     private void searchCustomer(){
+        txt_regular_customer.setVisible(false);
         if(txt_customer_search.getText().trim().isEmpty()){
-            throw  new NotImplementedException();
+            txt_regular_customer.setVisible(true);
+            txt_regular_customer.setText("Por favor digite un numero de documento a buscar");
         }
         else{
             try{
@@ -164,7 +169,7 @@ public class SaleController implements Initializable {
 
     private void addToOrder(Product product){
         if(!orders.containsKey(product.getProductCode())){
-            BillDetail newDetail= new BillDetail(product,(short)1);
+            BillDetail newDetail= new BillDetail(product,(short)1,0,product.getPrice());
             orders.put(product.getProductCode(),newDetail);
         }
         else{
@@ -182,8 +187,8 @@ public class SaleController implements Initializable {
         for (Map.Entry<String, BillDetail> entry : orders.entrySet()) {
             details.add(entry.getValue());
         }
-        actualTransaction= new Bill(Float.parseFloat(txt_total_price.getText()),
-                details,Session.getInstance().getActualUser(),customer);
+        actualTransaction= new Bill(0,Float.parseFloat(txt_total_price.getText()),
+                details,Session.getInstance().getActualUser(),customer,new Date());
         inventoryActuator.subtracteProducts(details);
         facturator.saveTransaction(actualTransaction);
         cleanFields();

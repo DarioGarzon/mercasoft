@@ -65,7 +65,7 @@ public class UserDTO extends NaturalPersonDTO {
         this.role = role;
     }
 
-    public User ConvertToUser() {
+    public User convertToUser() {
         return new User(this.getUserName(),this.getLastName(),this.getDocumentNumber(),
                 this.getUserName(),this.getPassword(),this.role.ConvertToRole());
     }

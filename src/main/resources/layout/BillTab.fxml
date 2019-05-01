@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="650.0" prefWidth="600.0" stylesheets="/styles/bill.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uan.mercasoft.controllers.BillController">
+<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="501.0" prefWidth="738.0" VBox.vgrow="ALWAYS">
+    <children>
+        <Text layoutX="41.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%billId" />
+        <Text layoutX="241.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%regularCustomer" />
+        <TextField fx:id="txt_billId_search" layoutX="37.0" layoutY="56.0" promptText="%billId" />
+        <TextField fx:id="txt_customer_search" layoutX="240.0" layoutY="56.0" promptText="%regularCustomer" />
+        <Text fx:id="txt_regular_customer" layoutX="39.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Test Customer" visible="false" />
+        <TableView id="bills" fx:id="billTableList" layoutX="48.0" layoutY="120.0" prefHeight="491.0" prefWidth="520.0"
+        >
+            <columns>
+                <TableColumn fx:id="billTableListColumn1" prefWidth="30.0" text="Id" />
+                <TableColumn fx:id="billTableListColumn2" prefWidth="150.0" text="%date" />
+                <TableColumn fx:id="billTableListColumn3" prefWidth="120.0" text="%regularCustomer" />
+                <TableColumn fx:id="billTableListColumn4" prefWidth="100.0" text="%total_Cost" />
+                <TableColumn fx:id="billTableListColumn5" prefWidth="120.0" text="%seller" />
+            </columns>
+        </TableView>
+
+    </children>
+</AnchorPane>
+        </VBox>

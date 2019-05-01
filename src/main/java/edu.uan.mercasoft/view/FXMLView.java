@@ -1,5 +1,6 @@
 package edu.uan.mercasoft.view;
 
+import edu.uan.mercasoft.controllers.BillReadController;
 import edu.uan.mercasoft.controllers.LoginController;
 import edu.uan.mercasoft.controllers.MainController;
 import edu.uan.mercasoft.controllers.SaleController;
@@ -32,7 +33,7 @@ public enum FXMLView {
 
         @Override
         String getFxmlFile() {
-            return "/layout/Login2.fxml";
+            return "/layout/Login.fxml";
         }
         @Override
         Object getController(StageManager stage) {
@@ -47,6 +48,31 @@ public enum FXMLView {
         @Override
         int getHeight() {
             return 470;
+        }
+    },
+    BILLREAD {
+        @Override
+        String getTitle() {
+            return getStringFromResourceBundle("login.title");
+        }
+
+        @Override
+        String getFxmlFile() {
+            return "/layout/Bill_Read.fxml";
+        }
+        @Override
+        Object getController(StageManager stage) {
+            return new BillReadController(stage);
+        }
+
+        @Override
+        int getWidth() {
+            return 250;
+        }
+
+        @Override
+        int getHeight() {
+            return 350;
         }
     },
 
@@ -70,8 +96,8 @@ public enum FXMLView {
     abstract String getTitle();
     abstract String getFxmlFile();
     abstract Object getController(StageManager stage);
-    int getWidth(){return 640;}
-    int getHeight(){return 680;}
+    int getWidth(){return 620;}
+    int getHeight(){return 670;}
     String getStringFromResourceBundle(String key){
         return ResourceBundle.getBundle("Bundle").getString(key);
     }

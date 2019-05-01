@@ -8,12 +8,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="650.0" prefWidth="600.0" stylesheets="/styles/sale.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.uan.mercasoft.controllers.SaleController">
+<VBox prefHeight="650.0" prefWidth="600.0" stylesheets="/styles/sale.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="edu.uan.mercasoft.controllers.SaleController">
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="501.0" prefWidth="738.0" VBox.vgrow="ALWAYS">
         <children>
             <TextField fx:id="txt_sku_search" layoutX="37.0" layoutY="56.0" promptText="%productCode" />
             <TextField fx:id="txt_customer_search" layoutX="240.0" layoutY="56.0" promptText="%regularCustomer" />
-            <Button fx:id="btn_customer_search" layoutX="423.0" layoutY="53.0" mnemonicParsing="false" onAction="#searchCustomer" text="%search" />
+            <Button fx:id="btn_customer_search" layoutX="423.0" layoutY="53.0" mnemonicParsing="false"
+                    onAction="#searchCustomer" text="%search" />
             <Text fx:id="txt_regular_customer" layoutX="39.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Test Customer" visible="false" />
             <TableView id="orderDetails" fx:id="orderDetailList" layoutX="8.0" layoutY="120.0" prefHeight="372.0" prefWidth="602.0" style="/styles">
                 <columns>
@@ -25,13 +27,13 @@
                 </columns>
             </TableView>
              <Text layoutX="388.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%subtotal" />
-            <Text fx:id="txt_net_price" layoutX="521.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fx:id="txt_net_price" layoutX="527.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
             <Text layoutX="41.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%productCode" />
             <Text layoutX="241.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%regularCustomer" />
             <Text layoutX="388.0" layoutY="543.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%total_Tax" />
             <Text fx:id="txt_total_tax" layoutX="527.0" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="40.94401168823242" />
             <Text layoutX="385.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="%total_Cost" />
-            <Text fx:id="txt_total_price" layoutX="517.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="59.30989235639572" />
+            <Text fx:id="txt_total_price" layoutX="527.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="59.30989235639572" />
             <Button layoutX="471.0" layoutY="591.0" mnemonicParsing="false" onAction="#concreteBill" prefHeight="32.0" prefWidth="113.0" text="%accept" />
 
         </children>

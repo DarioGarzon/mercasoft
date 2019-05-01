@@ -8,12 +8,15 @@ import edu.uan.mercasoft.domain.User;
 import javax.persistence.*;
 import javax.xml.soap.Detail;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Entity
 @Table(name = "Bill")
 @NamedQueries({
         @NamedQuery(name = "BillDTO.findById",
                 query = "SELECT c FROM BillDTO c WHERE c.id = : billId"),
+        @NamedQuery(name = "BillDTO.findAll",
+                query = "SELECT c FROM BillDTO c"),
 }
 )
 
@@ -24,6 +27,16 @@ public class BillDTO {
     private List<BillDetailDTO> detailList;
     private UserDTO seller;
     private RegularCustomerDTO buyer;
+    private Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     public int getId() {
@@ -42,7 +55,7 @@ public class BillDTO {
         this.totalValue = totalValue;
     }
     @OneToMany (
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.MERGE)
     public List<BillDetailDTO> getDetailList() {
         return detailList;
     }
@@ -69,11 +82,12 @@ public class BillDTO {
         this.buyer = buyer;
     }
 
-    public BillDTO(float totalValue, List<BillDetailDTO> detailList, UserDTO seller, RegularCustomerDTO buyer) {
+    public BillDTO(float totalValue, List<BillDetailDTO> detailList, UserDTO seller, RegularCustomerDTO buyer,Date date) {
         this.totalValue = totalValue;
         this.detailList = detailList;
         this.seller = seller;
         this.buyer = buyer;
+        this.date=date;
     }
     public BillDTO(Bill bill){
         this.totalValue = bill.getTotalValue();
@@ -82,7 +96,19 @@ public class BillDTO {
             this.detailList.add(new BillDetailDTO(detail));
         }
         this.seller = new UserDTO(bill.getSeller());
-        if(bill.getBuyer()!= null)
-        {this.buyer = new RegularCustomerDTO(bill.getBuyer());}
+        if (bill.getBuyer() != null) {
+            this.buyer = new RegularCustomerDTO(bill.getBuyer());
+        }
+        this.date=bill.getDate();
+    }
+
+    public Bill convertToBill(){
+        List<BillDetail> details= new ArrayList<>();
+        detailList.forEach(x->details.add(x.convertToBillDetail()));
+        if(buyer==null){return  new Bill(this.id,this.totalValue,details,this.seller.convertToUser(),this.date);}
+        return new Bill(this.id,this.totalValue,details,this.seller.convertToUser(),this.buyer.convertToCustomer(),this.date);
+    }
+
+    public BillDTO() {
     }
 }

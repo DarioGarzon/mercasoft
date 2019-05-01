@@ -7,14 +7,16 @@ import edu.uan.mercasoft.domain.PersistenceFacade;
 import edu.uan.mercasoft.domain.Product;
 import edu.uan.mercasoft.exceptions.NotFoundProduct;
 
+import java.util.List;
+
 public class SaleInteractorImpl implements ISaleInteractor {
 
-    private SaleController controller;
+
     private PersistenceFacade persistenceFacade;
     private BusinessFacade businessFacade;
 
-    public SaleInteractorImpl(SaleController controller) {
-        this.controller=controller;
+    public SaleInteractorImpl() {
+
         persistenceFacade= new PersistenceFacade();
         businessFacade= new BusinessFacade();
     }
@@ -33,5 +35,10 @@ public class SaleInteractorImpl implements ISaleInteractor {
     public void saveTransaction(Bill actualTransaction) {
 
         persistenceFacade.saveTransaction(actualTransaction);
+    }
+
+    @Override
+    public List<Bill> getBills() {
+        return persistenceFacade.getBills();
     }
 }

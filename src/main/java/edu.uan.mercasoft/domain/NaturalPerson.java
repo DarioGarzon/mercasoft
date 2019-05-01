@@ -34,4 +34,9 @@ public class NaturalPerson {
         this.lastName = lastName;
         this.documentNumber = documentNumber;
     }
+
+    @Override
+    public String toString() {
+        return name+ " "+ lastName;
+    }
 }

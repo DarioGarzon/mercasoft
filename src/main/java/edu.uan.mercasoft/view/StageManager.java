@@ -51,4 +51,16 @@ public class StageManager {
         this.languageResources=ResourceBundle.getBundle("string");
     }
 
+    public void  openDialogWindow(final FXMLView view ){
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(view.getFxmlFile()));
+        loader.setResources(languageResources);
+        loader.setController(view.getController(this));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root, view.getWidth(), view.getHeight());
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
 }

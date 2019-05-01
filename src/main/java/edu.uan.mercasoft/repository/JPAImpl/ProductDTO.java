@@ -8,8 +8,7 @@ import edu.uan.mercasoft.domain.Supplier;
 import javax.persistence.*;
 import java.util.Date;
 
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "Product")
@@ -44,6 +43,7 @@ public class ProductDTO {
     }
 
     public ProductDTO(Product product) {
+        this.id=product.getId();
         this.productCode =product.getProductCode();
         this.name =product.getName();
         this.price = product.getPrice();
@@ -53,6 +53,7 @@ public class ProductDTO {
         this.unitOfMeasure = product.getUnitOfMeasure();
         this.supplier =new SupplierDTO(product.getSupplier());
         this.version = product.getVersion();
+        this.stockQuantity=product.getQuantity();
     }
 
     @Id
@@ -88,7 +89,7 @@ public class ProductDTO {
     public void setUnitOfMeasure(String unitOfMeasure) {
         this.unitOfMeasure = unitOfMeasure;
     }
-    @ManyToOne(cascade = {MERGE})
+    @ManyToOne(cascade = ALL)
     public SupplierDTO getSupplier() {
         return supplier;
     }
@@ -128,7 +129,7 @@ public class ProductDTO {
     public void setAppliedTax(short appliedTax) {
         this.appliedTax = appliedTax;
     }
-    @ManyToOne(cascade = {PERSIST,MERGE})
+    @ManyToOne(cascade=ALL)
     public ProductTypeDTO getProductType() {
         return productType;
     }

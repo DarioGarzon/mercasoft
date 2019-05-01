@@ -85,4 +85,8 @@ public class PersistenceFacade {
     public void saveRegularCustomer(RegularCustomer customerToAdd) {
         customerRepo.saveCustomer(customerToAdd);
     }
+
+    public List<Bill> getBills() {
+        return billRepo.getBills();
+    }
 }

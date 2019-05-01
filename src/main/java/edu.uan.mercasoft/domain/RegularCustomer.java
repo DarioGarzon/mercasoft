@@ -56,4 +56,6 @@ public class RegularCustomer  extends NaturalPerson {
         this.score = score;
         this.address=address;
     }
+
+
 }
