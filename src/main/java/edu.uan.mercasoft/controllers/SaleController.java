@@ -84,7 +84,7 @@ public class SaleController implements Initializable {
             }
         }catch (NotFoundProduct noProduct){
             txt_regular_customer.setVisible(true);
-            txt_regular_customer.setText("Producto no encontrado");
+            txt_regular_customer.setText("Spftware Engineering");
         }
     }
 
